@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using BeBetter.Models;
 using System.Web.Mvc;
 
 namespace BeBetter.Controllers
@@ -10,7 +7,11 @@ namespace BeBetter.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                var articles = db.Articles;
+                return View(db.Articles);
+            }
         }
     }
 }
